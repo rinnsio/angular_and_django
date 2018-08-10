@@ -1,0 +1,3 @@
+!.keep
+*.pyc
+*.sqlite3
