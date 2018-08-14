@@ -1,10 +1,19 @@
 version: '2'
+# list out all the services that are running
 services:
+  # name of the container
   app:
     extends:
+      # this container is an extension from the service name "app" in the 
+      # "docker-compose.common.yml" in the "docker" folder
+      # extend files to keep things separate and clear
+      # "extends" is not needed to run docker-compose, but it is a good practice to have it
       file: docker/docker-compose.common.yml
       service: app
     ports:
       - 8000:8000
+    # mount everything in the host system into the container in real time so all the files in
+    # the container always synchronize to the files in the host system without having to do
+    # "docker-compose build" each time after made changes to the files
     volumes:
       - .:/usr/src/app/

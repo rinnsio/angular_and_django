@@ -5,11 +5,12 @@
 # exit script if there's an error
 set -e
 
-# assign SRC_DIR to be the directory that contains the "functions.sh" file
 ### define functions
+# assign SRC_DIR to be the directory that contains the "functions.sh" file
 SRC_DIR=$(cd "$(dirname "$0")"; pwd -P)
 . "$SRC_DIR"/scripts/functions.sh
 
+# clear out old container and then setup a new container
 set_defaults() {
   ENV=development
 }
@@ -26,9 +27,12 @@ gather_options() {
 
 ### define functions:end
 
+# call set_defaults() and gather_options()
 set_defaults
 gather_options "$@"
 
+# if "ENV" is "development", call teardown_containers() and setup_containers() from
+# "scripts/functions.sh" to clear out old containers and then setup a new containers
 case $ENV in
   'development')
     echo "Clearing out old containers"
