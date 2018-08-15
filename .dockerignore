@@ -1,1 +1,3 @@
+# files that docker do not need to keep track of (ignore these files when building new
+# containers)
 .git

@@ -13,9 +13,13 @@ RUN apt-get update && apt-get install -qq -y \
 # "docker-compose run (container_name (first_line_under_"services")) bash"
 WORKDIR /usr/src/app/
 
+# copy the "requirements.txt" file from host into the container
 COPY requirements.txt /usr/src/app/requirements.txt
+# make a new directory "scripts" under the "WORKDIR" inside the container
 RUN mkdir -p /usr/src/app/scripts/
+# copy the "install_dependencies.sh" file from host into the container
 COPY scripts/install_dependencies.sh /usr/src/app/scripts/install_dependencies.sh
+# run the "install_dependencies.sh" file
 RUN scripts/install_dependencies.sh /usr/src/
 
 # copy everything from host (everything under current directory) into the container (into the 

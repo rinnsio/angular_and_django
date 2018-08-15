@@ -1,9 +1,15 @@
+# common configuration file that's needed to share containers with other projects
+# (na-wai-frontend) so containers from other projects do not have to specify the "command"
+# configuration
 version: '2'
 services:
   app:
     build: ..
+    # starts the python application by starting the server in localhost at port 8000
     command:
       - scripts/start_app.sh
+    # specify the port number that this container is listening on (can only be access from
+    # port 8000)
     ports:
       - 8000
     env_file:

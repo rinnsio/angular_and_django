@@ -6,7 +6,8 @@
 set -e
 
 ### define functions
-# assign SRC_DIR to be the directory that contains the "functions.sh" file
+# import functions from the "functions.sh" file that clear out old containers and setup new
+# containers
 SRC_DIR=$(cd "$(dirname "$0")"; pwd -P)
 . "$SRC_DIR"/scripts/functions.sh
 

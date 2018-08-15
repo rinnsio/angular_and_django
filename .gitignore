@@ -1,3 +1,5 @@
+# compiled artifacts and database files that git do not need to keep track of (hide these files
+# when using git commands such as "git status")
 !.keep
 *.pyc
 *.sqlite3

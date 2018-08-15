@@ -10,6 +10,11 @@ services:
       # "extends" is not needed to run docker-compose, but it is a good practice to have it
       file: docker/docker-compose.common.yml
       service: app
+    # map port 8000 in host to port 8000 in container so when you start the python web
+    # application inside the container at port 8000 (by running
+    # "python manage.py runserver 0.0.0.0:8000" command in "scripts/start_app.sh", you can
+    # access the web application from the browser in the host at port 8000 (by typing in
+    # "localhost:8000" in the browser)
     ports:
       - 8000:8000
     # mount everything in the host system into the container in real time so all the files in
