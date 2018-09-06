@@ -1,3 +1,5 @@
+**Back-end app**
+
 1. run the script "bootstrap.sh" by typing "(project_dir)$ .bootstrap.sh" on shell.
    a. "bootstrap.sh" run functions from "scripts/functions.sh".
       1. "scripts/functions.sh" run "docker-compose stop" command to clear out old containers.
@@ -25,3 +27,59 @@
      so that "Dockerfile", "manage.py" and the "na_wai_backend" sub-folder are in the same
      directory.
      - delete the empty "na_wai_backend" folder"
+
+
+-----------------------------------------------------------------------------------------------
+
+
+**Front-end app**
+
+1. run the script "bootstrap.sh" by typing "(project_dir)$ .bootstrap.sh" on shell.
+   a. "bootstrap.sh" run functions from "scripts/functions.sh".
+      1. "scripts/functions.sh" run "docker-compose stop" command to clear out old containers.
+      2. "scripts/functions.sh" run "docker-compose build" command to setup new containers
+         based on "Dockerfile" and "docker-compose.yml".
+         a. "Dockerfile"
+            1. install node, run updates for packages and install shellcheck.
+            2. run "install_dependencies.sh".
+               a. install chrome for unit testing.
+               b. npm install
+                  1. run code in "package.json"
+                     a. define "ng", "start", "build", "test", "lint", "e2e" and "doc" commands.
+                     b. install packages listed under dependencies.
+                  2. "package-lock.json" is automatically generated based on version requirement
+                     listed in "package.json".  "package-lock.json" restrict the exact version
+                     of packages can be installed.
+         b. "docker-compose.yml"
+             1. create "app" container that uses the configuration of the corresponding
+                service name "app" from the "docker/docker-compose.common.yml" file.
+                a. "app" service in "docker/docker-compose.common.yml"
+                   1. runs "scripts/start_app.sh"
+                      a. "scripts/start_app.sh" run the "start" command stated in the
+                         "package.json" file that starts the Angular application.
+                   2. uses environment variables defined in "development.env".
+             2. create "backend" container that uses the configuration of the corresponding
+                service name "backend" from the "docker/docker-compose.common.yml" file.
+                a. "backend" service in "docker/docker-compose.common.yml" is extended from the
+                   "app" service in "backend/docker/docker-compose.common.yml" that belongs to
+                   another repo.
+             3. create "test-server" container that uses the configuration of the corresponding
+                service name "test-server" from the "docker/docker-compose.common.yml" file.
+                a. "test-server" service in "docker/docker-compose.common.yml" build image
+                   "selenium/hub".
+             4. create "test-node" container that uses the configuration of the corresponding
+                service name "test-node" from the "docker/docker-compose.common.yml" file.
+                a. "test-node" service in "docker/docker-compose.common.yml"
+                   1. build image "selenium/node-chrome".
+                   2. uses environment variables defined in "development.test-node.env".
+             5. create "test-app" container that uses the configuration of "app" service
+                from the "docker/docker-compose.common.yml" file.
+2. for testing, run "(project_dir)$ docker-compose run app scripts/test_app.sh" on shell.
+   a. "scripts/test_app.sh" run the commands stated in the "package.json" file.
+      1. "lint" checks the coding style.
+      2. "test" checks the code coverage of the tests.
+      3. "e2" checks the end-to-end test.
+3. for documenation, run "(project_dir)$ docker-compose run app scripts/build_documentation.sh"
+   on shell.
+   a. "scripts/build_documentation.sh" runs the "doc" commands stated in the "package.json" file
+      that checks the documentation coverage.
