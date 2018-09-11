@@ -83,3 +83,10 @@
    on shell.
    a. "scripts/build_documentation.sh" runs the "doc" commands stated in the "package.json" file
       that checks the documentation coverage.
+
+
+** In order to use "ng generate component <component_name>" to create a new component to the
+   app, you can install "node" and "@angular/cli" on your host or install from your
+   container.  To install from container, enter in bash mode in container by running
+   "docker-compose run <container_name> bash", then run "npm run ng" to enable ng (angular)
+   commands, then run ng generate command to create new component.
