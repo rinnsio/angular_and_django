@@ -90,3 +90,18 @@
    container.  To install from container, enter in bash mode in container by running
    "docker-compose run <container_name> bash", then run "npm run ng" to enable ng (angular)
    commands, then run ng generate command to create new component.
+
+*************************************************************************************************
+
+Documentation:
+1. To see which file needs documentation and the percentage of coverage, delete the rest of the line
+   from "--" in scripts/build_documentation.sh.
+2. Build the documentation:
+   (project_dir)$ docker-compose run app scripts/build_documentation.sh
+3. Open the documentation in Firefox:
+   (project_dir)$ firefox documentation/index.html
+4. After documentation is added to all files, double check the coverage is 100% by revert
+   scripts/build_documentation.sh back to original content:
+   (project_dir)$ git checkout -- scripts/build_documentation.sh
+5. Build the documentation again:
+   (project_dir)$ docker-compose run app scripts/build_documentation.sh
