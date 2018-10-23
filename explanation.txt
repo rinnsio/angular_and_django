@@ -98,10 +98,22 @@ Documentation:
    from "--" in scripts/build_documentation.sh.
 2. Build the documentation:
    (project_dir)$ docker-compose run app scripts/build_documentation.sh
-3. Open the documentation in Firefox:
+3. Open the documentation in Firefox (replace 'firefox' with 'open' if prefer a different browser):
    (project_dir)$ firefox documentation/index.html
 4. After documentation is added to all files, double check the coverage is 100% by revert
    scripts/build_documentation.sh back to original content:
    (project_dir)$ git checkout -- scripts/build_documentation.sh
 5. Build the documentation again:
    (project_dir)$ docker-compose run app scripts/build_documentation.sh
+
+Unit Test:
+1. bash into the container:
+   (project_dir)$ docker-compose run app bash
+2. To see which file needs to write test for and the percentage of coverage:
+   app# npm run test
+3. Look at the result in Firefox (replace 'firefox' with 'open' if prefer a different browser):
+   (project_dir)$ firefox coverage/index.html
+4. Pull 'f' in front of 'describe' or 'it' to run only that specific test.
+5. After unit test is added to all files, double check that no 'f' is put in front of any test.
+   Run test again and make sure the coverage is 100%:
+   app# npm run test 
