@@ -117,3 +117,20 @@ Unit Test:
 5. After unit test is added to all files, double check that no 'f' is put in front of any test.
    Run test again and make sure the coverage is 100%:
    app# npm run test 
+
+e2e (end-to-end) Test:
+1. bash into the container:
+   (project_dir)$ docker-compose run app bash
+2. Run test (there's no way to see the coverage percentage for e2e test because there's no coverage
+   requirement for e2e test):
+   app# npm run e2e
+
+Linter Test:
+1. bash into the container:
+   (project_dir)$ docker-compose run app bash
+2. Run test:
+   app# npm run lint
+
+To run all the tests above together at once:
+1. Run:
+   (project_dir)$ docker-compose run app scripts/test_app.sh
