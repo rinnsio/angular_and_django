@@ -28,6 +28,31 @@
      directory.
      - delete the empty "na_wai_backend" folder"
 
+*************************************************************************************************
+
+Unit Test:
+1. bash into the container:
+   (project_dir)$ docker-compose run app bash
+2. To see which file needs to write test for and the percentage of coverage:
+   app# scripts/test_app.sh
+   app# coverage html
+3. Look at the result on web page:
+   (project_dir)$ open htmlcov/index.html
+4. To run test on one module:
+   app# ./manage.py test <module_name>.tests
+5. To run test on one test case:
+   app# ./manage.py test <module_name>.tests.<TestCaseName>
+
+Linter Test:
+1. bash into the container:
+   (project_dir)$ docker-compose run app bash
+2. Run test:
+   app# pycodestyle --exclude=docs,migrations .
+   app# pylint --load-plugins pylint_django *
+
+To run all the tests above together at once:
+1. Run:
+   (project_dir)$ docker-compose run app scripts/test_app.sh
 
 -----------------------------------------------------------------------------------------------
 
