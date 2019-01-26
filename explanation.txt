@@ -51,8 +51,7 @@ Linter Test:
    app# pylint --load-plugins pylint_django *
 
 To run all the tests above together at once:
-1. Run:
-   (project_dir)$ docker-compose run app scripts/test_app.sh
+(project_dir)$ docker-compose run app scripts/test_app.sh
 
 -----------------------------------------------------------------------------------------------
 
@@ -119,43 +118,30 @@ To run all the tests above together at once:
 *************************************************************************************************
 
 Documentation:
-1. To see which file needs documentation and the percentage of coverage, delete the rest of the line
-   from "--" in scripts/build_documentation.sh.
-2. Build the documentation:
-   (project_dir)$ docker-compose run app scripts/build_documentation.sh
-3. Open the documentation in Firefox (replace 'firefox' with 'open' if prefer a different browser):
-   (project_dir)$ firefox documentation/index.html
-4. After documentation is added to all files, double check the coverage is 100% by revert
-   scripts/build_documentation.sh back to original content:
-   (project_dir)$ git checkout -- scripts/build_documentation.sh
-5. Build the documentation again:
-   (project_dir)$ docker-compose run app scripts/build_documentation.sh
+1. To generate a document that shows which file needs documentation and the percentage of coverage:
+   (project_dir)$ docker-compose run app npm run doc
+2. Open the documentation in web browser:
+   (project_dir)$ open documentation/index.html
+3. After documentation is added to all files, double check that the coverage is 100%:
+   (project_dir)$ docker-compose run app npm run doc
 
 Unit Test:
-1. bash into the container:
-   (project_dir)$ docker-compose run app bash
-2. To see which file needs to write test for and the percentage of coverage:
-   app# npm run test
-3. Look at the result in Firefox (replace 'firefox' with 'open' if prefer a different browser):
-   (project_dir)$ firefox coverage/index.html
-4. Pull 'f' in front of 'describe' or 'it' to run only that specific test.
-5. After unit test is added to all files, double check that no 'f' is put in front of any test.
+1. To see which file needs to write test for and the percentage of coverage:
+   (project_dir)$ docker-compose run app npm run test
+2. Look at the result in web browser:
+   (project_dir)$ open coverage/index.html
+3. Pull 'f' in front of 'describe' or 'it' to run only that specific test.
+4. After unit test is added to all files, double check that no 'f' is put in front of any test.
    Run test again and make sure the coverage is 100%:
-   app# npm run test 
+   (project_dir)$ docker-compose run app npm run test
 
 e2e (end-to-end) Test:
-1. bash into the container:
-   (project_dir)$ docker-compose run app bash
-2. Run test (there's no way to see the coverage percentage for e2e test because there's no coverage
-   requirement for e2e test):
-   app# npm run e2e
+(There's no way to see the coverage percentage for e2e test because there's no coverage
+requirement for e2e test)
+(project_dir)$ docker-compose run app npm run e2e
 
 Linter Test:
-1. bash into the container:
-   (project_dir)$ docker-compose run app bash
-2. Run test:
-   app# npm run lint
+(project_dir)$ docker-compose run app npm run lint
 
 To run all the tests above together at once:
-1. Run:
-   (project_dir)$ docker-compose run app scripts/test_app.sh
+(project_dir)$ docker-compose run app scripts/test_app.sh
