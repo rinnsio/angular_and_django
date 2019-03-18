@@ -1,0 +1,38 @@
+Angular
+------------------------
+To print the value of a FormControl in console:
+console.log(component.generalDetail.controls['lastName'].value);
+
+To print the value of a css element in console:
+console.log(generalDetailDe.query(By.css('p#lastNameWarning')).nativeElement);
+
+To demonstrate an action in unit test:
+lastNameElement.dispatchEvent(new Event('blur'));
+
+
+
+Django
+------------------------
+To print the value of a variable in console and flush the buffer:
+print(value);
+import sys 
+sys.stdout.flush()
+
+To add seeds files to database, edit:
+vi scripts/setup/add_seed_data.sh
+
+After changing the attributes in models.py, create migration file for those changes. Apply those changes to the database:
+$ docker-compose run app bash
+# python manage.py makemigrations <module_name>
+# python manage.py migrate
+
+To load the seeds.yaml to the database.
+# python manage.py loaddata folder/seeds.yaml
+
+To drop table for a module:
+# python manage.py migrate <module_name> zero
+# python manage.py migrate
+
+Signin to database:
+$ docker-compose run database bash
+# psql -h database -p 5432 -U user <database_name>
